@@ -1,13 +1,3 @@
-
-while task.wait() do
-
-game.Players.LocalPlayer.Name = "xNemesio"
-
-game.Players.LocalPlayer.UserId = 528326376
-
-end
-
-
 _, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
 
 
