@@ -2,7 +2,7 @@ local Player = Game.Players.LocalPlayer
 local Character = Player.Character
 
 Character.ChildAdded:connect(function(child)
-    if child.Name == "justFound" or child.Name == "Deb" then
+    if child.Name == "Deb" then
         game:GetService("RunService").Stepped:wait()
         child:Destroy()
     end
@@ -73,7 +73,7 @@ collectingDiv:addToggle({
     toggled = nil,
     callback = function(value) -- Calls back on a function with a value
         chestCollect = value
-        Character.HumanoidRootPart.CFrame = CFrame.new(1050, -150, 21)
+        Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MAP.waterfall1.Dummy2.Torso.CFrame
                 local args = {
                 [1] = Vector3.new(1049.11, -148.894, 22.2313)
                 }
