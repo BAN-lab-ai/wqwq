@@ -2,82 +2,28 @@ local Player = Game.Players.LocalPlayer
 local Character = Player.Character
 
 Character.ChildAdded:connect(function(child)
-    if child.Name == "Deb" or child.Name == "FireballDeb" then
+    if child.Name == "Deb" or child.Name == "FireballDeb" or child.Name == "justFound" then
         game:GetService("RunService").Stepped:wait()
         child:Destroy()
     end
 end)
 
-repeat wait() until game:IsLoaded()
-local Venyx = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venyx-UI-Library/main/source2.lua"))()
-local UI = Venyx.new({
-  title = "AutoFarm"
-})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Auto farm by мама", "Ocean")
 
-local Themes = {
-  Background = Color3.fromRGB(24, 24, 24),
-  Glow = Color3.fromRGB(0, 0, 0),
-  Accent = Color3.fromRGB(10, 10, 10),
-  LightContrast = Color3.fromRGB(20, 20, 20),
-  DarkContrast = Color3.fromRGB(14, 14, 14),  
-  TextColor = Color3.fromRGB(255, 255, 255)
-}
-
-local Main = UI:addPage({
-    title = "Main",
-})
-local Settings = UI:addPage({
-    title = "Settings",
-})
-local Extras = UI:addPage({
-    title = "Extras",
-})
-
---[[ local generalDiv = Main:addsection({
-    title = "General",
-}) ]]--
-local collectingDiv = Main:addSection({
-    title = "Collecting"
-})
-local Colours = Settings:addSection({
-  title = "Colours"
-})
-local More = Extras:addSection({
-  title = "More"
-})
-
-local function findPlr(name)
-    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
-        if string.find(v.Name, name) then
-            return v
-        end
-    end
-    return nil
-end
+local Tab = Window:NewTab("Op")
+local Section = Tab:NewSection("Main")
 
 
-local function damageplayer(player)
-for i,p in pairs(game.Workspace:GetChildren()) do
-if p.Name == player then
-print("Damaging " .. player)
-game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(p.Humanoid,1) -- the last arguement is not damage don't bother changin it
-print("Damaged " .. player)
-end
-end
-end
-
-
-local chestCollect = false
-collectingDiv:addToggle({
-    title = "Collect Chests", -- Set the title
-    toggled = nil,
-    callback = function(value) -- Calls back on a function with a value
-        chestCollect = value
-        Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MAP.waterfall1.Dummy2.Torso.CFrame
-                local args = {
+Section:NewToggle("Toggle Loop Fling", "", function(state) --------------- toggle loop void
+    da = state
+    Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MAP.waterfall1.Dummy2.Torso.CFrame
+while da do
+task.wait()
+pcall (function()
+        local args = {
                 [1] = Vector3.new(1049.11, -148.894, 22.2313)
                 }
-        while wait() and chestCollect do
 for i,v in pairs(game.Players:GetPlayers()) do
     for i,b in pairs(v.Backpack:GetDescendants()) do
         if b.Name == "Fireball" or b.Name == "Lightningball" then
@@ -91,23 +37,18 @@ for i,v in pairs(game.Players:GetPlayers()) do
     end
 end
 		game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(game:GetService("Workspace").MAP.waterfall1.Dummy2.Humanoid,5)
-end
-    end})
-
-for theme, color in pairs(Themes) do
-    Colours:addColorPicker({
-        title = theme,
-        default = color,
-        callback = function(color3)
-            UI:setTheme({
-                theme = theme,
-                color3 = color3
-            })
+		game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
+		
+		if game:GetService("Workspace").NPC:FindFirstChild("LavaGorilla") then
+        game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(
+                                    game:GetService("Workspace").NPC.LavaGorilla.Humanoid,
+                                    5
+                                )
+                                wait()
+                                if game:GetService("Workspace").NPC:FindFirstChild("LavaGorilla") then
+        game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
         end
-    })
+    end
+end)
 end
-
-UI:SelectPage({
-    page = UI.pages[1],
-    toggle = true
-})
+end)
