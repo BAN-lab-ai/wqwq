@@ -2,7 +2,7 @@ local Player = Game.Players.LocalPlayer
 local Character = Player.Character
 
 Character.ChildAdded:connect(function(child)
-    if child.Name == "Deb" then
+    if child.Name == "Deb" or child.Name == "FireballDeb" then
         game:GetService("RunService").Stepped:wait()
         child:Destroy()
     end
@@ -78,7 +78,18 @@ collectingDiv:addToggle({
                 [1] = Vector3.new(1049.11, -148.894, 22.2313)
                 }
         while wait() and chestCollect do
-game:GetService("Players").LocalPlayer.Backpack.Fireball.FireballEvent:FireServer(unpack(args))
+for i,v in pairs(game.Players:GetPlayers()) do
+    for i,b in pairs(v.Backpack:GetDescendants()) do
+        if b.Name == "Fireball" or b.Name == "Lightningball" then
+            b.FireballEvent:FireServer(unpack(args))
+        end
+    end
+    for i,c in pairs(v.Character:GetDescendants()) do
+        if c.Name == "Fireball" or c.Name == "Lightningball" then
+            c.FireballEvent:FireServer(unpack(args))
+        end
+    end
+end
 		game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(game:GetService("Workspace").MAP.waterfall1.Dummy2.Humanoid,5)
 end
     end})
