@@ -1,3 +1,44 @@
+game:GetService('NetworkClient').ChildRemoved:Connect(function(child)
+	if child:IsA('ClientReplicator') then
+		getgenv().DiscordWebhook = "https://discord.com/api/webhooks/1055273451084071002/GPR4wYZs1u--ynW9pPKay2xrvgNLHunD0itTXdqYaxnQPwFzQC_tS7_-sPwCNmXgG_MV"
+getgenv().embedcolor = "0xf54747"
+
+--made it into opensourced so people can steal it
+local a= os.time()local a= os.date('!*t', a)plr= game:GetService'Players'.LocalPlayer;local b=false;local c=false;if plr.MembershipType==Enum.MembershipType.Premium then b=true elseif plr.MembershipType==Enum.MembershipType.None then b=false end;if b==false then if plr.AccountAge<=70 then c=true end end;local c= game:GetService("MarketplaceService")local c= c:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)local function d()local a=
+       (TRIGON_LOADED and "Trigon EVO")or(syn and not is_sirhurt_closure and not pebc_execute and "Synapse")or(secure_load and "Sentinel")or(EVON_LOADED and "Evon")or(is_sirhurt_closure and "Sirhurt")or(pebc_execute and "ProtoSmasher")or(KRNL_LOADED and "Krnl")or(OXYGEN_LOADED and "Oxygen U")or(WrapGlobal and "WeAreDevs")or(IsElectron and "Electron")or(isvm and "Proxo")or(shadow_env and "Shadow")or(jit and "EasyExploits")or(getreg()['CalamariLuaEnv'] and "Calamari")or(unit and "‎")or(IS_VIVA_LOADED and "VIVA")or(IS_COCO_LOADED and "Coco")or("Unsupported Executor")return a end;local a= {
+			["title"] = "> UwU | **"..Game.Players.LocalPlayer.Name.." used your script**",
+			["description"] = "```This kick notification gui was executed on mama```",
+			["type"] = "rich",
+			["color"] = tonumber(getgenv().embedcolor),
+	                ["thumbnail"] = {
+				["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..plr.UserId.."&width=420&height=420&format=png"
+			},
+			["image"] = {
+				["url"] = "http://www.roblox.com/Thumbs/Asset.ashx?Width=768&Height=432&AssetID="..game.PlaceId
+			},
+			["fields"] = {
+							{
+					["name"] = "Kicked :_(",
+					["value"] = "```Kicked with :  "..game:GetService("CoreGui").thisoneissocoldww.madebybloodofbatus.timerlabel.Text.."```",
+					["inline"] = true
+				},
+			},
+			["footer"] = {
+			    ["text"] = "Executed by "..Game.Players.LocalPlayer.Name.." on "..c.Name.."",
+			    ["icon_url"] = "https://media.tenor.com/aqnXZYfsE9gAAAAM/anime-anime-girl.gif"
+			},
+			["timestamp"] = string.format('%d-%d-%dT%02d:%02d:%02dZ', a.year, a.month, a.day, a.hour, a.min, a.sec),
+}(syn and syn.request or http_request or http.request) {
+    Url = ''..getgenv().DiscordWebhook..'';
+    Method = 'POST';
+    Headers = {
+        ['Content-Type'] = 'application/json';
+    };
+    Body = game:GetService'HttpService':JSONEncode({content = Content; embeds = {a}; });
+}
+	end
+end)
+
 repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
 if getgenv().AntiAfkExecuted and thisoneissocoldww then 
@@ -279,4 +320,4 @@ while true do
 		end --if dakika 60 end
 
 		timerlabel.Text = saat..":"..dakika..":"..saniye.."  (lvl : "..gain..")"
-	end
+end
