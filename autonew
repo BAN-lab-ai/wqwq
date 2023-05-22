@@ -17,7 +17,7 @@ local Section = Tab:NewSection("Main")
 
 Section:NewToggle("Toggle Loop Fling", "", function(state) --------------- toggle loop void
     da = state
-    Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MAP.waterfall1.Dummy2.Torso.CFrame
+    Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MAP["5k_dummies"].Dummy2.HumanoidRootPart.CFrame
 while da do
 task.wait()
 pcall (function()
@@ -36,7 +36,7 @@ for i,v in pairs(game.Players:GetPlayers()) do
         end
     end
 end
-		game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(game:GetService("Workspace").MAP.waterfall1.Dummy2.Humanoid,5)
+		game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(game:GetService("Workspace").MAP["5k_dummies"].Dummy2.Humanoid,5)
 		game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
 		
 		if game:GetService("Workspace").NPC:FindFirstChild("LavaGorilla") then
